@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Match Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Import Google Icon Font -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Import Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <!-- Import Custom CSS -->
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
+</head>
+
+<body>
+    <!-- NAV BAR -->
+    <nav>
+        <div class="nav-wrapper blue">
+          <a href="index.html" class="brand-logo center">Match Game</a>
+        </div>
+    </nav>
+
+    <main class="container margin-adder">
+        <div class="row">
+            <!-- SECTION FOR INSTRUCTIONS -->
+            <section class="col s12 m4">
+
+                <h2 class="headings">Rules</h2>
+                <div class="divider"></div>
+                <p class="flow-text">Click on a card to reveal the number. Click on another card to try and find a match for your first number. If the two selected cards match, they will be greyed out, if not, try again!</p>
+
+                <h2 class="headings">How to win</h2>
+                <div class="divider"></div>
+                <p class="flow-text">Try to match every pair of numbers!</p>
+
+            </section>
+
+            <!-- SECTION FOR GAME -->
+            <section id="app" class="col s12 m8">
+                <div class="row">
+                    <card v-for="item in value_set" v-bind:value="item" v-bind:key="item.id"
+                    :class="[item.visible ? item.color : '']"></card>
+                </div>
+            </section>
+        </div>
+    </main>
+
+
+    <!-- Import Vue, jQuery, Materialize JS, and custom JS -->
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

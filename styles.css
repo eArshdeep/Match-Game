@@ -1,0 +1,17 @@
+.margin-adder {
+    margin-top: 15px;
+}
+
+.headings {
+    font-size: 28px;
+}
+
+.tile {
+    width: 200px;
+    height: 200px;
+}
+
+.tile-number {
+    font-size: 68px;
+    margin: 0 auto;
+}
