@@ -9,9 +9,10 @@ Vue.component("card", {
 
     methods: {
       revealCard: function(value){
-        // set visible to true
-        value.visible = true;
-        app.selected_pair.push(value);
+        if(value.matched === false){
+          value.visible = true;
+          app.selected_pair.push(value);
+        }
       }
     }
 })
@@ -52,17 +53,37 @@ var app = new Vue({
     },
 
     validateMatch: function(){
-      if(this.selected_pair[0].value === this.selected_pair[1].value){
-        // alert for match
-        alert("match");
-      } else {
-        // reset ui
-        setTimeout(function(){
+      if(this.selected_pair[0].id !== this.selected_pair[1].id){
+        if(this.selected_pair[0].value === this.selected_pair[1].value){
+          this.selected_pair[0].matched = true;
+          this.selected_pair[1].matched = true;
+          // set color
+          this.selected_pair[0].color = "blue-grey lighten-2";
+          this.selected_pair[1].color = "blue-grey lighten-2";
+          // clear selected_pair
+          app.selected_pair = [];
+          this.checkForGameWin();
+        } else {
+          // if mismatch...
+          // reset ui
+          setTimeout(function(){
           app.selected_pair[0].visible = false;
           app.selected_pair[1].visible = false;
           app.selected_pair = [];
-        }, 1000);
+          }, 500);
+        }
+      } else if (this.selected_pair[0].id === this.selected_pair[1].id){
+        this.selected_pair.splice(-1,1);
       }
+    },
+
+    checkForGameWin(){
+      for(i=0; i<app.value_set.length; i++){
+        if(app.value_set[i].matched !== true){
+          return false;
+        }
+      }
+      alert("YOU WIN");
     }
   },
 
