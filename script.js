@@ -97,3 +97,8 @@ var app = new Vue({
 })
 
 app.shuffle(app.value_set);
+
+// implment you have won modal and ability to restart
+// fix visbile values remaining true on mismatch when user clicks cards too quickly
+  // perphaps add execution halt untill method for clearing visible values has finished executing
+// clean code
