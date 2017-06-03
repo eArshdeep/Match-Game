@@ -84,12 +84,31 @@ var app = new Vue({
         }
       }
       alert("YOU WIN");
+    },
+
+    clearVisible: function(){
+      // get handle on ids
+      var id0 = app.selected_pair[0].id;
+      var id1 = app.selected_pair[1].id;
+
+      for(i=0; i < app.value_set.length; i++){ // go through every object in value_set array
+        if(app.value_set[i].matched !== true){ // check if match for object is false
+          if(app.value_set[i].visible === true){ // is it visible
+            if(app.value_set[i].id !== app.selected_pair[0].id || app.value_set[i].id !== app.selected_pair[1].id){ // check to see if
+              app.value_set[i].visible = false;
+            }
+          }
+
+        }
+      }
     }
   },
 
   watch: {
     selected_pair(){
       if(this.selected_pair.length === 2) {
+        // run a function here that sets the visibility of all cards to false expect those that have match:true or are also found in selected_pair
+        app.clearVisible();
         app.validateMatch();
       }
     }
