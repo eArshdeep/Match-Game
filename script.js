@@ -10,8 +10,14 @@ Vue.component("card", {
     methods: {
       revealCard: function(value){
         if(value.matched === false){
-          value.visible = true;
           app.selected_pair.push(value);
+
+          if(app.selected_pair.length===1 || app.selected_pair.length===2){
+            value.visible = true;
+          }
+          if(app.selected_pair.length === 2){
+            app.validateMatch();
+          }
         }
       }
     }
@@ -83,33 +89,16 @@ var app = new Vue({
           return false;
         }
       }
-      alert("YOU WIN");
+      $('#modal1').modal('open');
     },
 
     clearVisible: function(){
-      // get handle on ids
-      var id0 = app.selected_pair[0].id;
-      var id1 = app.selected_pair[1].id;
+      for(i=0; i<app.value_set.length; i++){
+        if(app.value_set[i].matched !== false || (app.value_set[i].id === app.selected_pair[0].id || app.value_set[i].id === app.selected_pair[1].id)){
 
-      for(i=0; i < app.value_set.length; i++){ // go through every object in value_set array
-        if(app.value_set[i].matched !== true){ // check if match for object is false
-          if(app.value_set[i].visible === true){ // is it visible
-            if(app.value_set[i].id !== app.selected_pair[0].id || app.value_set[i].id !== app.selected_pair[1].id){ // check to see if
-              app.value_set[i].visible = false;
-            }
-          }
-
+        } else {
+          app.value_set[i].visible = false;
         }
-      }
-    }
-  },
-
-  watch: {
-    selected_pair(){
-      if(this.selected_pair.length === 2) {
-        // run a function here that sets the visibility of all cards to false expect those that have match:true or are also found in selected_pair
-        app.clearVisible();
-        app.validateMatch();
       }
     }
   }
@@ -117,7 +106,8 @@ var app = new Vue({
 
 app.shuffle(app.value_set);
 
-// implment you have won modal and ability to restart
-// fix visbile values remaining true on mismatch when user clicks cards too quickly
-  // perphaps add execution halt untill method for clearing visible values has finished executing
-// clean code
+// only steps left are to clean up code, test on mobile and push repo
+
+$(document).ready(function(){
+    $('.modal').modal();
+  });
