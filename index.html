@@ -3,11 +3,10 @@
 <html lang="en">
 
 <head>
+
   <title>Match Game</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Import Google Icon Font -->
-  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Import Materialize CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
   <!-- Import Custom CSS -->
@@ -16,14 +15,16 @@
 </head>
 
 <body>
-  <!-- NAV BAR -->
+
+  <!-- Nav Bar -->
   <nav>
     <div class="nav-wrapper blue">
       <a href="index.html" class="brand-logo center">Match Game</a>
     </div>
   </nav>
 
-  <main class="container margin-adder view-adjuster">
+  <!--Game Area-->
+  <main class="container margin-adder viewport-adjuster">
     <div class="row">
       <!-- SECTION FOR INSTRUCTIONS -->
       <section class="col s12 m4">
@@ -40,27 +41,32 @@
 
       <!-- SECTION FOR GAME -->
       <section id="app" class="col s12 m8">
-
+        <!--grid for individual cards-->
         <div class="row">
 
-          <card v-for="item in value_set" v-bind:value="item" v-bind:key="item.id" :class="[item.visible ? item.color : '']"></card>
+          <card
+          v-for="card in deck" v-bind:card="card" v-bind:key="card.id" :class="[card.visible ? card.color : '']">
+          </card>
 
         </div>
-
       </section>
+
     </div>
   </main>
 
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <!-- Modal -->
+  <div id="modal" class="modal">
+
     <div class="modal-content">
-      <h4>You have won!</h4>
-      <p>A tip of the hat. GG. Well Done.</p>
+      <h2>You have won!</h2>
+      <p>A tip of the hat. GG. Well Done. Bravo!</p>
       <p>Would you like to play again?</p>
     </div>
+
     <div class="modal-footer">
-      <a href="index.html" class="modal-action modal-close waves-effect waves-green btn-flat">YES!</a>
+      <a href="index.html" class="modal-action modal-close waves-effect waves-green btn-flat blue-text">YES!</a>
     </div>
+
   </div>
 
 
@@ -69,6 +75,7 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
   <script src="script.js"></script>
+
 </body>
 
 </html>

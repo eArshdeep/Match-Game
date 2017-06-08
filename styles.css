@@ -7,15 +7,15 @@
 }
 
 .tile {
-    width: 20vh;
-    height: 20vh;
+  width: 20vh;
+  height: 20vh;
 }
 
 .tile-number {
-    font-size: 68px;
-    margin: 0 auto;
+  font-size: 68px;
+  margin: 0 auto;
 }
 
-.view-adjuster {
+.viewport-adjuster {
   height: 100vh;
 }
